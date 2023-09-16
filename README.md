@@ -76,6 +76,21 @@ Join screen session
 screen -x {screen name}
 ```
 
-Detach from screen ```bash screen -d```
-Re-attach to screen ```bash screen -r {screen name}```
+Detach from screen 
+```bash
+screen -d
+```
 
+Re-attach to screen 
+```bash 
+screen -r {screen name}
+```
+
+Keybord Shortcuts
+        
+  - Detach from screen: ```Ctrl + a + Ctrl + d```
+  - Split vertically: ```Ctrl + a + |```
+  - Split horizontally: ```Ctrl + a + S```
+  - Change window: ```Ctrl + a + Tab```
+  - Start new screen session in window: ```Ctrl + a + Ctrl + c```
+  - Exit all screen windows: ```Ctrl + a + \```
