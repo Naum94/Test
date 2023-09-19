@@ -35,6 +35,11 @@ Get all certificates for a given site using SNI
 echo | openssl s_client -showcerts -servername www.example.com -connect www.example.com:443 | awk '/BEGIN CERT/,/END CERT/ {print $0}' > chain.pem
 ```
 
+Read CSR
+```bash
+openssl req -noout -text -in certificate.csr
+```
+
 Read SSL certificate
 ```bash
 openssl x509 -noout -text -in certificate.cer
@@ -53,6 +58,15 @@ Remove private key passphrase
 ```bash
 openssl rsa -in private_w_pf.key -out private.key
 ```
+Create CSR with SAN's
+```bash
+openssl req -new -sha256 -nodes \
+-newkey rsa:2048 -keyout example.key \
+-subj "/C=MK/L=example/OU=IT/O=example/CN=www.example.com" \
+-addext "subjectAltName=DNS:www.example.com,DNS:example.com" \
+-out example.csr
+```
+
 ### CURL Tricks
 
 Test HTTPS with certificate chain file
@@ -94,3 +108,26 @@ Keybord Shortcuts
   - Change window: ```Ctrl + a + Tab```
   - Start new screen session in window: ```Ctrl + a + Ctrl + c```
   - Exit all screen windows: ```Ctrl + a + \```
+
+### Android Debug Bridge (ADB)
+
+Search for devices
+```bash
+adb devices
+```
+
+Remove Android package from phone
+```bash
+adb shell pm uninstall --user 0 {package}
+```
+
+Take phone screenshot
+```bash
+adb exec-out screencap -p > ./picture.png
+```
+### YT-DLP
+
+Download song from youtube to mp3 format
+```bash
+yt-dlp -x --audio-format 'mp3' {url}
+```
