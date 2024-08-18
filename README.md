@@ -27,12 +27,14 @@ alias nano='nano -ic'
 ### OPENSSL Tricks
 Get all certificates for a given site
 ```bash
-echo | openssl s_client -showcerts -connect www.example.com:443 | awk '/BEGIN CERT/,/END CERT/ {print $0}' > chain.pem
+echo | openssl s_client -showcerts -connect www.example.com:443 \
+| awk '/BEGIN CERT/,/END CERT/ {print $0}' > chain.pem
 ```
 
 Get all certificates for a given site using SNI
 ```bash
-echo | openssl s_client -showcerts -servername www.example.com -connect www.example.com:443 | awk '/BEGIN CERT/,/END CERT/ {print $0}' > chain.pem
+echo | openssl s_client -showcerts -servername www.example.com -connect www.example.com:443 \
+| awk '/BEGIN CERT/,/END CERT/ {print $0}' > chain.pem
 ```
 
 Read CSR
@@ -44,20 +46,22 @@ Read SSL certificate
 ```bash
 openssl x509 -noout -text -in certificate.cer
 ```
+
 Extract certificate chain from PFX
 ```bash
-openssl pkcs12 -in certificate.pfx -nokeys -out ca-bundle.pem -nodes
+openssl pkcs12 -in certificate.pfx -nodes -nokeys -out ca-bundle.pem
 ```
 
 Extract private key from PFX
 ```bash
-openssl pkcs12 -in certificate.pfx -nocerts -out ca-bundle.pem -nodes
+openssl pkcs12 -in certificate.pfx -nodes -nocerts -out ca-bundle.key
 ```
 
 Remove private key passphrase
 ```bash
 openssl rsa -in private_w_pf.key -out private.key
 ```
+
 Create CSR with SAN's
 ```bash
 openssl req -new -sha256 -nodes \
@@ -77,6 +81,14 @@ curl -vI --cacert ca-bundle.pem "https://www.example.com"
 Check certificate validity for given site
 ```bash
 curl -kvI https://example.com 2>&1 | awk '/Server certificate/,/issuer/ { print }'
+```
+
+### SNMPv3
+Create SNMPv3 User
+```bash
+net-snmp-create-v3-user -ro \
+-A AuthPass -a SHA-256 \
+-X EncryptPass -x AES256 snmpuser
 ```
 
 ### SCREEN Tricks
@@ -114,6 +126,11 @@ Keybord Shortcuts
 Search for devices
 ```bash
 adb devices
+```
+
+List all packages on the phone
+```bash
+adb shell pm list packages
 ```
 
 Remove Android package from phone
