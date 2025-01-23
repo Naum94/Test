@@ -1,22 +1,4 @@
 # Linux cheatsheet
-### BASH Customizations
-
-Colors
-```bash
-RED="\[\e[1;31m\]";
-GREEN="\[\e[1;32m\]";
-YELLOW="\[\e[1;33m\]";
-BLUE="\[\e[1;34m\]";
-PURPLE="\[\e[1;35m\]"; 
-AQUA="\[\e[1;36m\]";
-WHITE="\[\e[1;37m\]";
-RESET="\[\e[0m\]";
-```
-
-BASH Prompt example
-```bash
-PS1="${GREEN}\u${WHITE}@${RED}\h ${WHITE}in ${AQUA}\w ${WHITE}> ${RESET}";
-```
 
 Aliases
 ```bash
@@ -92,56 +74,34 @@ net-snmp-create-v3-user -ro \
 ```
 
 ### SCREEN Tricks
-Create new screen session
-```bash
-screen -S {screen name}
-```
 
-Join screen session
-```bash
-screen -x {screen name}
-```
-
-Detach from screen 
-```bash
-screen -d
-```
-
-Re-attach to screen 
-```bash 
-screen -r {screen name}
-```
+| Description | Command |
+|-------------|---------|
+|Create new screen session |```screen -S {screen name}```|
+|Join screen session |```screen -x {screen name}```|
+|Detach from screen  |```screen -d```|
+|Re-attach to screen |```screen -r {screen name}```|
 
 Keybord Shortcuts
-        
-  - Detach from screen: ```Ctrl + a + Ctrl + d```
-  - Split vertically: ```Ctrl + a + |```
-  - Split horizontally: ```Ctrl + a + S```
-  - Change window: ```Ctrl + a + Tab```
-  - Start new screen session in window: ```Ctrl + a + Ctrl + c```
-  - Exit all screen windows: ```Ctrl + a + \```
+
+| Description | Shortcut |
+|-------------|----------|
+|Detach from screen|```Ctrl + a + Ctrl + d```|   
+|Split vertically  |``` Ctrl + a + \|``` |
+|Split horizontally|```Ctrl + a + S```|
+|Change window|```Ctrl + a + Tab```|
+|Start new screen session in window|```Ctrl + a + Ctrl + c```|
+|Exit all screen windows|```Ctrl + a + \```|
 
 ### Android Debug Bridge (ADB)
 
-Search for devices
-```bash
-adb devices
-```
+| Description | Command |
+|-------------|---------|
+|Search for devices|```adb devices```|
+|List all packages on the phone|```adb shell pm list packages```|
+|Remove Android package from phone|```adb shell pm uninstall --user 0 {package}```|
+|Take phone screenshot|```adb exec-out screencap -p > ./picture.png```|
 
-List all packages on the phone
-```bash
-adb shell pm list packages
-```
-
-Remove Android package from phone
-```bash
-adb shell pm uninstall --user 0 {package}
-```
-
-Take phone screenshot
-```bash
-adb exec-out screencap -p > ./picture.png
-```
 ### YT-DLP
 
 Download song from youtube to mp3 format
